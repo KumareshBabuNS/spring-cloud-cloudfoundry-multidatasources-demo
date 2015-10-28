@@ -5,13 +5,15 @@ The other purpose of this application is to demonstrate optional credential encr
 
 ## Testing
 
-This application has been configured with a Default profile with in-memory h2 databases for local development and testing. It has also been configured with a Cloud profile which is designed to use the Spring Cloud CloudFoundry component to initialize datasources from bound VCAP_SERVICES. 
+This application has been configured with a Default profile with in-memory h2 databases for local development and testing. It has also been configured with a Cloud profile which is designed to use the Spring Cloud Cloud Foundry component to initialize datasources from bound VCAP_SERVICES. 
 
 To test using the Default, local profile:
 `./gradlew test`
 
-To test using the Cloud profile (currently fails, need help with this one):
-`./gradlew test -Dspring.profiles.active=cloud`
+To test using the Cloud profile `./gradlew mockCloudTest`
 
-TODO: set the VCAP_SERVICES variable with the two services required to run the Cloud profile.
+
+## Deploying to Cloud Foundry
+
+You may use either brokered services in Cloud Foundry, or User Provided Services with the Spring Cloud Cloud Foundry component. Documentation on what your User Provided Services must contain in order to work with this component can be found here: http://cloud.spring.io/spring-cloud-connectors/spring-cloud-cloud-foundry-connector.html
  
