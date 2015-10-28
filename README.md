@@ -11,7 +11,7 @@ To test using the Default, local profile:
 `./gradlew test`
 
 To test using the Cloud profile (currently fails, need help with this one):
-`./gradlew test -Dspring.profiles.active`
+`./gradlew test -Dspring.profiles.active=cloud`
 
 TODO: set the VCAP_SERVICES variable with the two services required to run the Cloud profile.
  

@@ -2,6 +2,7 @@ package io.pivotal.pcfs.demo;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.CloudFactory;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 @Configuration
-@Profile("cloud")
 public class CloudConfig {
 
 	@Configuration
@@ -24,6 +24,7 @@ public class CloudConfig {
 		}
 		
 		@Bean
+		@Qualifier("inventoryDataSource")
 		public DataSource inventoryDataSource(CloudFactory cloudFactory) {
             Cloud cloud = cloudFactory.getCloud();
             return cloud.getServiceConnector("inventory-db", DataSource.class, null);
@@ -31,10 +32,10 @@ public class CloudConfig {
 		}
 
 		@Bean
+		@Qualifier("productDataSource")
 		public DataSource productDataSource(CloudFactory cloudFactory) {
-//            Cloud cloud = cloudFactory.getCloud();
-//            return cloud.getServiceConnector("product-db", DataSource.class, null);
-			return null;
+            Cloud cloud = cloudFactory.getCloud();
+            return cloud.getServiceConnector("product-db", DataSource.class, null);
 		}
 		
 	}
@@ -44,6 +45,7 @@ public class CloudConfig {
 	static class LocalConfiguration {
 
 		@Bean
+		@Qualifier("inventoryDataSource")
 		public DataSource inventoryDataSource() {
 			return new EmbeddedDatabaseBuilder()
 	            .setName("inventory")
@@ -52,6 +54,7 @@ public class CloudConfig {
 		}
 		
 		@Bean
+		@Qualifier("productDataSource")
 		public DataSource productDataSource() {
 			return new EmbeddedDatabaseBuilder()
 	            .setName("product")
