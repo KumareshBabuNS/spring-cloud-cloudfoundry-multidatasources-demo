@@ -26,7 +26,45 @@ dependencies {
 }
 
 test {
-    systemProperties 'property': 'value'
+    apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.5
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.commons:commons-dbcp2:2.1.1'
+	compile 'org.springframework.cloud:spring-cloud-spring-service-connector:1.2.0.RELEASE'
+	compile 'org.springframework.cloud:spring-cloud-cloudfoundry-connector:1.2.0.RELEASE'
+	compile 'org.springframework:spring-jdbc:3.1.4.RELEASE'
+	
+	runtime 'cglib:cglib:3.1'
+	runtime 'com.h2database:h2:1.4.190'
+	
+    testCompile 'junit:junit:4.12'
+}
+
+test {
+    systemProperties System.properties
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
+
 }
 
 uploadArchives {
