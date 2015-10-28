@@ -57,6 +57,12 @@ test {
     systemProperties System.properties
 }
 
+task mockCloudTest(type: Test){
+	systemProperties 'spring.profiles.active': 'cloud'
+	environment 'VCAP_APPLICATION', 'spring-cloud-cloudfoundry-multidatasources-demo'
+	environment 'VCAP_SERVICES', ''
+}
+
 uploadArchives {
     repositories {
        flatDir {
