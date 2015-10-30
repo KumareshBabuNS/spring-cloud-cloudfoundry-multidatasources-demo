@@ -8,7 +8,6 @@ public class EncryptedCredentialsBasicDbcpPooledDataSourceCreator extends Abstra
 
 	public EncryptedCredentialsBasicDbcpPooledDataSourceCreator() {
 		super();
-		System.out.println("Initialized " + getClass().getName());
 	}
 
 	public EncryptedCredentialsBasicDataSource create(RelationalServiceInfo serviceInfo, ServiceConnectorConfig serviceConnectorConfig) {
