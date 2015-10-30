@@ -17,7 +17,7 @@ public class CloudConfig {
 	@Configuration
 	@Profile("cloud")
 	static class CloudConfiguration {
-
+		
 		@Bean
 		public CloudFactory cloudFactory(){
 			return new CloudFactory();
@@ -27,16 +27,16 @@ public class CloudConfig {
 		@Qualifier("inventoryDataSource")
 		public DataSource inventoryDataSource(CloudFactory cloudFactory) {
             Cloud cloud = cloudFactory.getCloud();
-            return cloud.getServiceConnector("inventory-db", DataSource.class, null);
-
+            return cloud.getServiceConnector("inventory-db", EncryptedCredentialsBasicDataSource.class, null);
 		}
-
+		
 		@Bean
 		@Qualifier("productDataSource")
 		public DataSource productDataSource(CloudFactory cloudFactory) {
-            Cloud cloud = cloudFactory.getCloud();
-            return cloud.getServiceConnector("product-db", DataSource.class, null);
+			Cloud cloud = cloudFactory.getCloud();
+            return cloud.getServiceConnector("product-db", EncryptedCredentialsBasicDataSource.class, null);
 		}
+
 		
 	}
 

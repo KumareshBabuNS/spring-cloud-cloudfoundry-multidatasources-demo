@@ -46,11 +46,12 @@ dependencies {
 	compile 'org.springframework.cloud:spring-cloud-spring-service-connector:1.2.0.RELEASE'
 	compile 'org.springframework.cloud:spring-cloud-cloudfoundry-connector:1.2.0.RELEASE'
 	compile 'org.springframework:spring-jdbc:3.1.4.RELEASE'
+	compile 'commons-codec:commons-codec:1.10'
 	
 	runtime 'cglib:cglib:3.1'
 	runtime 'com.h2database:h2:1.4.190'
 	runtime 'mysql:mysql-connector-java:5.1.37'
-
+	
     testCompile 'junit:junit:4.12'
 }
 
@@ -63,65 +64,30 @@ task mockCloudTest(type: Test){
 	environment "VCAP_APPLICATION", "spring-cloud-cloudfoundry-multidatasources-demo"
 	environment "VCAP_SERVICES", '''
 	{
-      "p-mysql": [
-        {
-          "name": "inventory-db",
-          "label": "p-mysql",
-          "tags": [
-            "mysql",
-            "relational"
-          ],
-          "plan": "100mb-dev",
-          "credentials": {
-            "hostname": "localhost",
-            "port": 3306,
-            "name": "inventory-db",
-            "username": "5VT9kmahi2evk1nL",
-            "password": "2DT3AkmATvrsoj2z",
-            "uri": "mysql://5VT9kmahi2evk1nL:2DT3AkmATvrsoj2z@localhost:3306/inventory-db?reconnect=true",
-            "jdbcUrl": "jdbc:mysql://localhost:3306/inventory-db?user=5VT9kmahi2evk1nL&password=2DT3AkmATvrsoj2z"
-          }
-        },
-        {
-          "name": "product-db",
-          "label": "p-mysql",
-          "tags": [
-            "mysql",
-            "relational"
-          ],
-          "plan": "100mb-dev",
-          "credentials": {
-            "hostname": "localhost",
-            "port": 3306,
-            "name": "product-db",
-            "username": "mYSDU8tWPkJhvKwM",
-            "password": "1ck54muwrxoBgmzg",
-            "uri": "mysql://mYSDU8tWPkJhvKwM:1ck54muwrxoBgmzg@localhost:3306/product-db?reconnect=true",
-            "jdbcUrl": "jdbc:mysql://localhost:3306/product-db?user=mYSDU8tWPkJhvKwM&password=1ck54muwrxoBgmzg"
-          }
-        }
-      ]
-    }
+	  "user-provided": [
+	   {
+	    "credentials": {
+	     "oracleUri": "jdbc:oracle:thin:@testhost:1521:productdb",
+	     "password": "pa55woRD",
+	     "username": "admin"
+	    },
+	    "label": "user-provided",
+	    "name": "product-db",
+	    "syslog_drain_url": "",
+	    "tags": []
+	   },
+	   {
+	    "credentials": {
+	     "oracleUri": "jdbc:oracle:thin:@testhost:1521:inventorydb",
+	     "password": "pa55woRD",
+	     "username": "admin"
+	    },
+	    "label": "user-provided",
+	    "name": "inventory-db",
+	    "syslog_drain_url": "",
+	    "tags": []
+	   }
+	  ]
+	 }
 	'''
-	
-	println "System Properties: $systemProperties" 
-	println "Environment: $environment"
-}
-
-uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
-    }
-}
-
-}
-
-uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
-    }
 }

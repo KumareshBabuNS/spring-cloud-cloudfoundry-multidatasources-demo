@@ -10,7 +10,8 @@ This application has been configured with a Default profile with in-memory h2 da
 To test using the Default, local profile:
 `./gradlew test`
 
-To test using the Cloud profile `./gradlew mockCloudTest`
+To test using the Cloud profile: 
+`./gradlew mockCloudTest`
 
 
 ## Deploying to Cloud Foundry
