@@ -18,6 +18,7 @@ public class EncryptedCredsRelationalServiceInfoCreator extends CloudFoundryServ
 	public EncryptedCredentialsServiceInfo createServiceInfo(Map<String, Object> serviceData) {
 		System.out.println("service data: " + serviceData);
 		
+		@SuppressWarnings("unchecked")
 		Map<String, String> credentials = (Map<String, String>) serviceData.get("credentials");
 		String serviceId = (String)serviceData.get("name");
 		String host = credentials.get("host");

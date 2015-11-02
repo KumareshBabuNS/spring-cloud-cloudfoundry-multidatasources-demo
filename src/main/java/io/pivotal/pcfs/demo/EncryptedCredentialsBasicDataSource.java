@@ -17,8 +17,8 @@ public class EncryptedCredentialsBasicDataSource extends BasicDataSource {
         final byte[] decodedBytes = base64.decode(password.getBytes());
     	final String decodedPassword = new String(decodedBytes);
     	System.out.println("Decoded Password: " + decodedPassword);
-    	
-        return decodedPassword;
+        
+        return null;
     }
 
 	@Override
