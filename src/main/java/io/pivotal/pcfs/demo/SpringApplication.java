@@ -9,24 +9,22 @@ public class SpringApplication {
 
 	private static final SpringApplication instance = new SpringApplication();
 	private ApplicationContext applicationContext;
-	
-	private SpringApplication(){
-		//enforce non instantiability
+
+	private SpringApplication() {
+		// enforce non instantiability
 		applicationContext = new AnnotationConfigApplicationContext(CloudConfig.class);
 	}
-	
-	
-	public static SpringApplication getInstance(){
+
+	public static SpringApplication getInstance() {
 		return instance;
 	}
-	
-	
-	public DataSource getInventoryDatasource(){
+
+	public DataSource getInventoryDatasource() {
 		return applicationContext.getBean("inventoryDataSource", DataSource.class);
 	}
-	
-	public DataSource getProductDatasource(){
+
+	public DataSource getProductDatasource() {
 		return applicationContext.getBean("productDataSource", DataSource.class);
 	}
-	
+
 }

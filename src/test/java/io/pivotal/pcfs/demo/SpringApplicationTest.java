@@ -19,14 +19,14 @@ public class SpringApplicationTest {
 	}
 
 	@Test
-	public void testGetInventoryDatasourceHappyPath() throws Exception{
+	public void testGetInventoryDatasourceHappyPath() throws Exception {
 		DataSource inventoryDatasource = SpringApplication.getInstance().getInventoryDatasource();
 		assertNotNull(inventoryDatasource);
 		assertNotNull(inventoryDatasource.getConnection());
 	}
 
 	@Test
-	public void testGetProductDatasourceHappyPath() throws Exception{
+	public void testGetProductDatasourceHappyPath() throws Exception {
 		DataSource productDatasource = SpringApplication.getInstance().getProductDatasource();
 		assertNotNull(productDatasource);
 		assertNotNull(productDatasource.getConnection());
