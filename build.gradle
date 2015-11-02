@@ -67,8 +67,9 @@ task mockCloudTest(type: Test){
 	  "user-provided": [
 	   {
 	    "credentials": {
-	     "oracleUri": "jdbc:oracle:thin:@testhost:1521:productdb",
-	     "password": "pa55woRD",
+		 "driverClassName":"oracle.jdbc.driver.OracleDriver",
+	     "jdbcUrl": "jdbc:oracle:thin:@testhost:1521:productdb",
+	     "password": "cGE1NXdvUkQ=",
 	     "username": "admin"
 	    },
 	    "label": "user-provided",
@@ -78,8 +79,9 @@ task mockCloudTest(type: Test){
 	   },
 	   {
 	    "credentials": {
-	     "oracleUri": "jdbc:oracle:thin:@testhost:1521:inventorydb",
-	     "password": "pa55woRD",
+		 "driverClassName":"oracle.jdbc.driver.OracleDriver",
+	     "jdbcUrl": "jdbc:oracle:thin:@testhost:1521:inventorydb",
+	     "password": "cGE1NXdvUkQ=",
 	     "username": "admin"
 	    },
 	    "label": "user-provided",
